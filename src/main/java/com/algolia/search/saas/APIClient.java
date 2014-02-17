@@ -10,6 +10,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -328,8 +329,8 @@ public class APIClient {
       }
 
       if (json != null) {
-        req.setPayload(json.getBytes());
-        req.setHeader(new HTTPHeader("Content-type", "application/json"));
+        req.setPayload(json.getBytes(Charset.forName("UTF-8")));
+        req.setHeader(new HTTPHeader("Content-Type", "application/json; charset=utf-8"));
       }
 
       req.getFetchOptions().setDeadline(30D);
